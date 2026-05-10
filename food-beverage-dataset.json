@@ -1,0 +1,1683 @@
+{
+  "generatedAt": "2026-05-10T13:30:17.007Z",
+  "source": "2026q1",
+  "companyCount": 67,
+  "companies": [
+    {
+      "ticker": "ADM",
+      "cik": "7084",
+      "name": "ARCHER-DANIELS-MIDLAND CO",
+      "sic": "2070",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260217",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 26665000000,
+        "currentLiabilities": 19534000000,
+        "totalLiabilities": null,
+        "equity": 22740000000,
+        "revenue": 80269000000,
+        "netIncome": 1078000000
+      },
+      "metrics": {
+        "currentRatio": 1.3650558001433397,
+        "debtToEquity": null,
+        "profitMargin": 0.013429842155751286
+      }
+    },
+    {
+      "ticker": "BGS",
+      "cik": "1278027",
+      "name": "B&G FOODS, INC.",
+      "sic": "2000",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260303",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 739818000,
+        "currentLiabilities": 222841000,
+        "totalLiabilities": 2381870000,
+        "equity": 452925000,
+        "revenue": 1828687000,
+        "netIncome": -43257000
+      },
+      "metrics": {
+        "currentRatio": 3.3199366364358442,
+        "debtToEquity": 5.2588618424683995,
+        "profitMargin": -0.023654676825503762
+      }
+    },
+    {
+      "ticker": "BRBR",
+      "cik": "1772016",
+      "name": "BELLRING BRANDS, INC.",
+      "sic": "2000",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260203",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q1",
+      "coverageQuarters": 1,
+      "facts": {
+        "currentAssets": 786300000,
+        "currentLiabilities": 352000000,
+        "totalLiabilities": 1571000000,
+        "equity": -510700000,
+        "revenue": 537300000,
+        "netIncome": 43700000
+      },
+      "metrics": {
+        "currentRatio": 2.2338068181818183,
+        "debtToEquity": -3.076169962796162,
+        "profitMargin": 0.0813325888702773
+      }
+    },
+    {
+      "ticker": null,
+      "cik": "2029586",
+      "name": "BLUE LINE HOLDINGS, INC.",
+      "sic": "2086",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260203",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q2",
+      "coverageQuarters": 2,
+      "facts": {
+        "currentAssets": 31688,
+        "currentLiabilities": 82422,
+        "totalLiabilities": 82422,
+        "equity": -50734,
+        "revenue": null,
+        "netIncome": -48428
+      },
+      "metrics": {
+        "currentRatio": 0.38446045958603287,
+        "debtToEquity": -1.6245910040603935,
+        "profitMargin": null
+      }
+    },
+    {
+      "ticker": "SAM",
+      "cik": "949870",
+      "name": "BOSTON BEER CO INC",
+      "sic": "2082",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260224",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 417579000,
+        "currentLiabilities": 252534000,
+        "totalLiabilities": 347315000,
+        "equity": 846280000,
+        "revenue": 1964994000,
+        "netIncome": 108469000
+      },
+      "metrics": {
+        "currentRatio": 1.6535555608353727,
+        "debtToEquity": 0.41040199461171245,
+        "profitMargin": 0.05520067745753931
+      }
+    },
+    {
+      "ticker": null,
+      "cik": "1962481",
+      "name": "BRANCHOUT FOOD INC.",
+      "sic": "2000",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260331",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 5684907,
+        "currentLiabilities": 6269147,
+        "totalLiabilities": 8887985,
+        "equity": 5571707,
+        "revenue": 13724563,
+        "netIncome": -6124672
+      },
+      "metrics": {
+        "currentRatio": 0.9068070983181603,
+        "debtToEquity": 1.595199639894919,
+        "profitMargin": -0.44625624874176323
+      }
+    },
+    {
+      "ticker": "BRCC",
+      "cik": "1891101",
+      "name": "BRC INC.",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260302",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 100325000,
+        "currentLiabilities": 76094000,
+        "totalLiabilities": 141226000,
+        "equity": 68017000,
+        "revenue": 398263000,
+        "netIncome": -11914000
+      },
+      "metrics": {
+        "currentRatio": 1.3184350934370648,
+        "debtToEquity": 2.0763338577120427,
+        "profitMargin": -0.02991490547703402
+      }
+    },
+    {
+      "ticker": null,
+      "cik": "14177",
+      "name": "BRIDGFORD FOODS CORP",
+      "sic": "2013",
+      "form": "10-Q",
+      "period": "20260131",
+      "filed": "20260306",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q1",
+      "coverageQuarters": 1,
+      "facts": {
+        "currentAssets": 62499000,
+        "currentLiabilities": 20544000,
+        "totalLiabilities": 29902000,
+        "equity": 114703000,
+        "revenue": 55312000,
+        "netIncome": -843000
+      },
+      "metrics": {
+        "currentRatio": 3.0422021028037385,
+        "debtToEquity": 0.2606906532523125,
+        "profitMargin": -0.015240815736187446
+      }
+    },
+    {
+      "ticker": "BFB",
+      "cik": "14693",
+      "name": "BROWN FORMAN CORP",
+      "sic": "2080",
+      "form": "10-Q",
+      "period": "20260131",
+      "filed": "20260304",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q3",
+      "coverageQuarters": 3,
+      "facts": {
+        "currentAssets": 4234000000,
+        "currentLiabilities": 1530000000,
+        "totalLiabilities": 4220000000,
+        "equity": 4082000000,
+        "revenue": 3016000000,
+        "netIncome": 661000000
+      },
+      "metrics": {
+        "currentRatio": 2.7673202614379084,
+        "debtToEquity": 1.0338069573738364,
+        "profitMargin": 0.21916445623342176
+      }
+    },
+    {
+      "ticker": null,
+      "cik": "2079720",
+      "name": "BUDA JUICE, INC.",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260326",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 3219000,
+        "currentLiabilities": 585000,
+        "totalLiabilities": 1232000,
+        "equity": 3738000,
+        "revenue": 12609000,
+        "netIncome": 3533000
+      },
+      "metrics": {
+        "currentRatio": 5.5025641025641026,
+        "debtToEquity": 0.3295880149812734,
+        "profitMargin": 0.2801966849076057
+      }
+    },
+    {
+      "ticker": "BG",
+      "cik": "1996862",
+      "name": "BUNGE GLOBAL SA",
+      "sic": "2070",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260219",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 24391000000,
+        "currentLiabilities": 15127000000,
+        "totalLiabilities": null,
+        "equity": 17369000000,
+        "revenue": 70329000000,
+        "netIncome": 816000000
+      },
+      "metrics": {
+        "currentRatio": 1.6124148872876314,
+        "debtToEquity": null,
+        "profitMargin": 0.011602610587382161
+      }
+    },
+    {
+      "ticker": "CPB",
+      "cik": "16732",
+      "name": "CAMPBELL'S CO",
+      "sic": "2000",
+      "form": "10-Q",
+      "period": "20260131",
+      "filed": "20260311",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q2",
+      "coverageQuarters": 2,
+      "facts": {
+        "currentAssets": 2730000000,
+        "currentLiabilities": 2690000000,
+        "totalLiabilities": 11341000000,
+        "equity": 4005000000,
+        "revenue": 5241000000,
+        "netIncome": 339000000
+      },
+      "metrics": {
+        "currentRatio": 1.0148698884758365,
+        "debtToEquity": 2.8317103620474406,
+        "profitMargin": 0.06468231253577561
+      }
+    },
+    {
+      "ticker": "CELH",
+      "cik": "1341766",
+      "name": "CELSIUS HOLDINGS, INC.",
+      "sic": "2086",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260302",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 1811154000,
+        "currentLiabilities": 1078726000,
+        "totalLiabilities": 2178179000,
+        "equity": 1181467000,
+        "revenue": 2515269000,
+        "netIncome": 107999000
+      },
+      "metrics": {
+        "currentRatio": 1.6789750131173253,
+        "debtToEquity": 1.8436223779419991,
+        "profitMargin": 0.04293735580568122
+      }
+    },
+    {
+      "ticker": "CSGN",
+      "cik": "15357",
+      "name": "CHASE GENERAL CORP",
+      "sic": "2060",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260212",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q2",
+      "coverageQuarters": 2,
+      "facts": {
+        "currentAssets": 713195,
+        "currentLiabilities": 220556,
+        "totalLiabilities": 612028,
+        "equity": 766644,
+        "revenue": 1880271,
+        "netIncome": 68830
+      },
+      "metrics": {
+        "currentRatio": 3.233623206804621,
+        "debtToEquity": 0.7983209938380786,
+        "profitMargin": 0.03660642535038832
+      }
+    },
+    {
+      "ticker": "KO",
+      "cik": "21344",
+      "name": "COCA COLA CO",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260220",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 31044000000,
+        "currentLiabilities": 21281000000,
+        "totalLiabilities": null,
+        "equity": 34275000000,
+        "revenue": 47941000000,
+        "netIncome": 13107000000
+      },
+      "metrics": {
+        "currentRatio": 1.4587660354306657,
+        "debtToEquity": null,
+        "profitMargin": 0.2733985523873094
+      }
+    },
+    {
+      "ticker": "COKE",
+      "cik": "317540",
+      "name": "COCA-COLA CONSOLIDATED, INC.",
+      "sic": "2086",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260218",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 1426674000,
+        "currentLiabilities": 1128657000,
+        "totalLiabilities": 5042721000,
+        "equity": -739723000,
+        "revenue": 7228055000,
+        "netIncome": 570582000
+      },
+      "metrics": {
+        "currentRatio": 1.2640456755240963,
+        "debtToEquity": -6.817039621588081,
+        "profitMargin": 0.078939908453934
+      }
+    },
+    {
+      "ticker": null,
+      "cik": "1007019",
+      "name": "COFFEE HOLDING CO INC",
+      "sic": "2090",
+      "form": "10-Q",
+      "period": "20260131",
+      "filed": "20260316",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q1",
+      "coverageQuarters": 1,
+      "facts": {
+        "currentAssets": 33507052,
+        "currentLiabilities": 10953153,
+        "totalLiabilities": 12392088,
+        "equity": 28761513,
+        "revenue": 25565840,
+        "netIncome": 1648320
+      },
+      "metrics": {
+        "currentRatio": 3.0591238888016994,
+        "debtToEquity": 0.43085661035982353,
+        "profitMargin": 0.06447353186908782
+      }
+    },
+    {
+      "ticker": "STZ",
+      "cik": "16918",
+      "name": "CONSTELLATION BRANDS, INC.",
+      "sic": "2080",
+      "form": "10-Q",
+      "period": "20251130",
+      "filed": "20260108",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q3",
+      "coverageQuarters": 3,
+      "facts": {
+        "currentAssets": 2909100000,
+        "currentLiabilities": 2173200000,
+        "totalLiabilities": 13683100000,
+        "equity": 7710800000,
+        "revenue": 7218800000,
+        "netIncome": 1484900000
+      },
+      "metrics": {
+        "currentRatio": 1.3386250690226393,
+        "debtToEquity": 1.7745370130206983,
+        "profitMargin": 0.20569900814539813
+      }
+    },
+    {
+      "ticker": "CWGL",
+      "cik": "1562151",
+      "name": "CRIMSON WINE GROUP, LTD",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260317",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 109218000,
+        "currentLiabilities": 11349000,
+        "totalLiabilities": 28706000,
+        "equity": 186771000,
+        "revenue": 65085000,
+        "netIncome": 613000
+      },
+      "metrics": {
+        "currentRatio": 9.623579169970922,
+        "debtToEquity": 0.15369623763860557,
+        "profitMargin": 0.009418452792502113
+      }
+    },
+    {
+      "ticker": "DAR",
+      "cik": "916540",
+      "name": "DARLING INGREDIENTS INC.",
+      "sic": "2070",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260303",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 1553366000,
+        "currentLiabilities": 1034647000,
+        "totalLiabilities": 5489267000,
+        "equity": 4736911000,
+        "revenue": 6135877000,
+        "netIncome": 62804000
+      },
+      "metrics": {
+        "currentRatio": 1.5013487691937444,
+        "debtToEquity": 1.158828401040256,
+        "profitMargin": 0.010235537641970332
+      }
+    },
+    {
+      "ticker": "MOJO_10K",
+      "cik": "1414953",
+      "name": "EQUATOR BEVERAGE CO",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260323",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 1191046,
+        "currentLiabilities": 635073,
+        "totalLiabilities": null,
+        "equity": 555973,
+        "revenue": 4191049,
+        "netIncome": 49213
+      },
+      "metrics": {
+        "currentRatio": 1.8754473895127017,
+        "debtToEquity": null,
+        "profitMargin": 0.011742406256762926
+      }
+    },
+    {
+      "ticker": "FARM",
+      "cik": "34563",
+      "name": "FARMER BROTHERS CO",
+      "sic": "2090",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260213",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q2",
+      "coverageQuarters": 2,
+      "facts": {
+        "currentAssets": 83637000,
+        "currentLiabilities": 65950000,
+        "totalLiabilities": 115792000,
+        "equity": 35658000,
+        "revenue": 170524000,
+        "netIncome": -8891000
+      },
+      "metrics": {
+        "currentRatio": 1.2681880212282033,
+        "debtToEquity": 3.247293734926244,
+        "profitMargin": -0.052139288311322744
+      }
+    },
+    {
+      "ticker": "FLO",
+      "cik": "1128928",
+      "name": "FLOWERS FOODS INC",
+      "sic": "2000",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260225",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 729094000,
+        "currentLiabilities": 976157000,
+        "totalLiabilities": null,
+        "equity": 1303487000,
+        "revenue": 5256479000,
+        "netIncome": 83825000
+      },
+      "metrics": {
+        "currentRatio": 0.7469023937747719,
+        "debtToEquity": null,
+        "profitMargin": 0.015946986566483003
+      }
+    },
+    {
+      "ticker": "FRPT",
+      "cik": "1611647",
+      "name": "FRESHPET, INC.",
+      "sic": "2040",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260223",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 435714000,
+        "currentLiabilities": 78595000,
+        "totalLiabilities": 569116000,
+        "equity": 1208659000,
+        "revenue": 1102015000,
+        "netIncome": 139137000
+      },
+      "metrics": {
+        "currentRatio": 5.543787772759082,
+        "debtToEquity": 0.47086564531435254,
+        "profitMargin": 0.12625690212928137
+      }
+    },
+    {
+      "ticker": "GIS",
+      "cik": "40704",
+      "name": "GENERAL MILLS INC",
+      "sic": "2040",
+      "form": "10-Q",
+      "period": "20260228",
+      "filed": "20260318",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q3",
+      "coverageQuarters": 3,
+      "facts": {
+        "currentAssets": 4888600000,
+        "currentLiabilities": 8685300000,
+        "totalLiabilities": 23046100000,
+        "equity": 9357000000,
+        "revenue": 13815000000,
+        "netIncome": 1920300000
+      },
+      "metrics": {
+        "currentRatio": 0.5628590837391915,
+        "debtToEquity": 2.462979587474618,
+        "profitMargin": 0.13900108577633008
+      }
+    },
+    {
+      "ticker": "HAIN",
+      "cik": "910406",
+      "name": "HAIN CELESTIAL GROUP INC",
+      "sic": "2000",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260209",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q2",
+      "coverageQuarters": 2,
+      "facts": {
+        "currentAssets": 564395000,
+        "currentLiabilities": 1016534000,
+        "totalLiabilities": 1147165000,
+        "equity": 330245000,
+        "revenue": 752003000,
+        "netIncome": -136631000
+      },
+      "metrics": {
+        "currentRatio": 0.5552150739670292,
+        "debtToEquity": 3.473678632530394,
+        "profitMargin": -0.18168943474959542
+      }
+    },
+    {
+      "ticker": "HSY",
+      "cik": "47111",
+      "name": "HERSHEY CO",
+      "sic": "2060",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260217",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 3588899000,
+        "currentLiabilities": 3011896000,
+        "totalLiabilities": 9104547000,
+        "equity": 4636750000,
+        "revenue": 11692576000,
+        "netIncome": 883259000
+      },
+      "metrics": {
+        "currentRatio": 1.191574675885223,
+        "debtToEquity": 1.963562193346633,
+        "profitMargin": 0.07554015471013402
+      }
+    },
+    {
+      "ticker": "HRL",
+      "cik": "48465",
+      "name": "HORMEL FOODS CORP /DE/",
+      "sic": "2011",
+      "form": "10-Q",
+      "period": "20260131",
+      "filed": "20260226",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q1",
+      "coverageQuarters": 1,
+      "facts": {
+        "currentAssets": 3388240000,
+        "currentLiabilities": 1272917000,
+        "totalLiabilities": null,
+        "equity": 7938500000,
+        "revenue": null,
+        "netIncome": 181801000
+      },
+      "metrics": {
+        "currentRatio": 2.661791774326213,
+        "debtToEquity": null,
+        "profitMargin": null
+      }
+    },
+    {
+      "ticker": "INGR",
+      "cik": "1046257",
+      "name": "INGREDION INC",
+      "sic": "2040",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260217",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 3505000000,
+        "currentLiabilities": 1316000000,
+        "totalLiabilities": 3531000000,
+        "equity": 4274000000,
+        "revenue": 7219000000,
+        "netIncome": 729000000
+      },
+      "metrics": {
+        "currentRatio": 2.6633738601823707,
+        "debtToEquity": 0.8261581656527843,
+        "profitMargin": 0.10098351572239922
+      }
+    },
+    {
+      "ticker": "SJM",
+      "cik": "91419",
+      "name": "J M SMUCKER CO",
+      "sic": "2033",
+      "form": "10-Q",
+      "period": "20260131",
+      "filed": "20260226",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q3",
+      "coverageQuarters": 3,
+      "facts": {
+        "currentAssets": 1988600000,
+        "currentLiabilities": 2357300000,
+        "totalLiabilities": 11029600000,
+        "equity": 5236100000,
+        "revenue": null,
+        "netIncome": -526800000
+      },
+      "metrics": {
+        "currentRatio": 0.8435922453654605,
+        "debtToEquity": 2.1064532762934247,
+        "profitMargin": null
+      }
+    },
+    {
+      "ticker": "JJSF2025",
+      "cik": "785956",
+      "name": "J&J SNACK FOODS CORP",
+      "sic": "2052",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260205",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q1",
+      "coverageQuarters": 1,
+      "facts": {
+        "currentAssets": 412517000,
+        "currentLiabilities": 163925000,
+        "totalLiabilities": null,
+        "equity": 912858000,
+        "revenue": null,
+        "netIncome": 883000
+      },
+      "metrics": {
+        "currentRatio": 2.516498398657923,
+        "debtToEquity": null,
+        "profitMargin": null
+      }
+    },
+    {
+      "ticker": null,
+      "cik": "1083522",
+      "name": "JONES SODA CO.",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260331",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 13262000,
+        "currentLiabilities": 13764000,
+        "totalLiabilities": 13764000,
+        "equity": 1466000,
+        "revenue": 25303000,
+        "netIncome": -1779000
+      },
+      "metrics": {
+        "currentRatio": 0.9635280441732055,
+        "debtToEquity": 9.38881309686221,
+        "profitMargin": -0.070307868632178
+      }
+    },
+    {
+      "ticker": "KDP",
+      "cik": "1418135",
+      "name": "KEURIG DR PEPPER INC.",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260224",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 5266000000,
+        "currentLiabilities": 8290000000,
+        "totalLiabilities": 29943000000,
+        "equity": 25516000000,
+        "revenue": 16603000000,
+        "netIncome": 2079000000
+      },
+      "metrics": {
+        "currentRatio": 0.6352231604342582,
+        "debtToEquity": 1.1734989810315097,
+        "profitMargin": 0.1252183340360176
+      }
+    },
+    {
+      "ticker": "KHC",
+      "cik": "1637459",
+      "name": "KRAFT HEINZ CO",
+      "sic": "2030",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260212",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 10127000000,
+        "currentLiabilities": 8778000000,
+        "totalLiabilities": 39997000000,
+        "equity": 41777000000,
+        "revenue": null,
+        "netIncome": -5846000000
+      },
+      "metrics": {
+        "currentRatio": 1.1536796536796536,
+        "debtToEquity": 0.9573928238025708,
+        "profitMargin": null
+      }
+    },
+    {
+      "ticker": "LSF20251",
+      "cik": "1650696",
+      "name": "LAIRD SUPERFOOD, INC.",
+      "sic": "2000",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260330",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 18840657,
+        "currentLiabilities": 7708320,
+        "totalLiabilities": 7755050,
+        "equity": 11462787,
+        "revenue": 49889286,
+        "netIncome": -3252211
+      },
+      "metrics": {
+        "currentRatio": 2.44419756834174,
+        "debtToEquity": 0.6765414030636703,
+        "profitMargin": -0.06518856573734087
+      }
+    },
+    {
+      "ticker": "LIFEWAY_",
+      "cik": "814586",
+      "name": "LIFEWAY FOODS, INC.",
+      "sic": "2020",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260317",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 37056000,
+        "currentLiabilities": 16639000,
+        "totalLiabilities": 19791000,
+        "equity": 85819000,
+        "revenue": 212496000,
+        "netIncome": 13859000
+      },
+      "metrics": {
+        "currentRatio": 2.2270569144780334,
+        "debtToEquity": 0.23061326745825517,
+        "profitMargin": 0.06522005120096379
+      }
+    },
+    {
+      "ticker": "MZTI",
+      "cik": "57515",
+      "name": "MARZETTI CO",
+      "sic": "2030",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260203",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q2",
+      "coverageQuarters": 2,
+      "facts": {
+        "currentAssets": 491413000,
+        "currentLiabilities": 180662000,
+        "totalLiabilities": null,
+        "equity": 1032827000,
+        "revenue": 1011425000,
+        "netIncome": 106261000
+      },
+      "metrics": {
+        "currentRatio": 2.7200684150513115,
+        "debtToEquity": null,
+        "profitMargin": 0.10506068171144672
+      }
+    },
+    {
+      "ticker": "MKC",
+      "cik": "63754",
+      "name": "MCCORMICK & CO INC",
+      "sic": "2090",
+      "form": "10-Q",
+      "period": "20260228",
+      "filed": "20260331",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q1",
+      "coverageQuarters": 1,
+      "facts": {
+        "currentAssets": 2609300000,
+        "currentLiabilities": 3442100000,
+        "totalLiabilities": 8790200000,
+        "equity": 7556100000,
+        "revenue": 1873900000,
+        "netIncome": 1016200000
+      },
+      "metrics": {
+        "currentRatio": 0.758054675924581,
+        "debtToEquity": 1.1633249956988394,
+        "profitMargin": 0.5422914776668979
+      }
+    },
+    {
+      "ticker": null,
+      "cik": "1295514",
+      "name": "MDWERKS, INC.",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260331",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 1167052,
+        "currentLiabilities": 2422069,
+        "totalLiabilities": 3046448,
+        "equity": 1002324,
+        "revenue": 2214542,
+        "netIncome": -3797990
+      },
+      "metrics": {
+        "currentRatio": 0.4818409384703739,
+        "debtToEquity": 3.03938447049058,
+        "profitMargin": -1.7150227902654365
+      }
+    },
+    {
+      "ticker": "MED",
+      "cik": "910329",
+      "name": "MEDIFAST INC",
+      "sic": "2090",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260217",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 201683000,
+        "currentLiabilities": 42962000,
+        "totalLiabilities": 49053000,
+        "equity": 198920000,
+        "revenue": 385788000,
+        "netIncome": -18672000
+      },
+      "metrics": {
+        "currentRatio": 4.694450910106606,
+        "debtToEquity": 0.24659662175749045,
+        "profitMargin": -0.04839963918006781
+      }
+    },
+    {
+      "ticker": "TAP",
+      "cik": "24545",
+      "name": "MOLSON COORS BEVERAGE CO",
+      "sic": "2082",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260218",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 2935500000,
+        "currentLiabilities": 5310800000,
+        "totalLiabilities": 12195700000,
+        "equity": 10230300000,
+        "revenue": 13040300000,
+        "netIncome": -2139600000
+      },
+      "metrics": {
+        "currentRatio": 0.5527415831889734,
+        "debtToEquity": 1.1921155782332873,
+        "profitMargin": -0.1640759798470894
+      }
+    },
+    {
+      "ticker": "MDLZ",
+      "cik": "1103982",
+      "name": "MONDELEZ INTERNATIONAL, INC.",
+      "sic": "2000",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260204",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 12951000000,
+        "currentLiabilities": 21864000000,
+        "totalLiabilities": 45596000000,
+        "equity": 25838000000,
+        "revenue": 38537000000,
+        "netIncome": 2451000000
+      },
+      "metrics": {
+        "currentRatio": 0.5923435784851812,
+        "debtToEquity": 1.764687669324251,
+        "profitMargin": 0.06360121441731323
+      }
+    },
+    {
+      "ticker": "MNST",
+      "cik": "865752",
+      "name": "MONSTER BEVERAGE CORP",
+      "sic": "2086",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260227",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 5361084000,
+        "currentLiabilities": 1447780000,
+        "totalLiabilities": null,
+        "equity": 8254108000,
+        "revenue": 8294343000,
+        "netIncome": 1905432000
+      },
+      "metrics": {
+        "currentRatio": 3.7029686830872093,
+        "debtToEquity": null,
+        "profitMargin": 0.22972669444704663
+      }
+    },
+    {
+      "ticker": "FIZZ2026",
+      "cik": "69891",
+      "name": "NATIONAL BEVERAGE CORP",
+      "sic": "2086",
+      "form": "10-Q",
+      "period": "20260131",
+      "filed": "20260312",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q3",
+      "coverageQuarters": 3,
+      "facts": {
+        "currentAssets": 538037000,
+        "currentLiabilities": 122069000,
+        "totalLiabilities": 201409000,
+        "equity": 591062000,
+        "revenue": 883432000,
+        "netIncome": 143332000
+      },
+      "metrics": {
+        "currentRatio": 4.407646495015114,
+        "debtToEquity": 0.3407578223604292,
+        "profitMargin": 0.1622445191027719
+      }
+    },
+    {
+      "ticker": "PEP",
+      "cik": "77476",
+      "name": "PEPSICO INC",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260203",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 27949000000,
+        "currentLiabilities": 32764000000,
+        "totalLiabilities": 86852000000,
+        "equity": 20547000000,
+        "revenue": 93925000000,
+        "netIncome": 8240000000
+      },
+      "metrics": {
+        "currentRatio": 0.8530399218654621,
+        "debtToEquity": 4.226991774954981,
+        "profitMargin": 0.08772957146659568
+      }
+    },
+    {
+      "ticker": "PPC",
+      "cik": "802481",
+      "name": "PILGRIMS PRIDE CORP",
+      "sic": "2015",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260212",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 4237363000,
+        "currentLiabilities": 2890258000,
+        "totalLiabilities": 6649799000,
+        "equity": 3693731000,
+        "revenue": 18497553000,
+        "netIncome": 1082359000
+      },
+      "metrics": {
+        "currentRatio": 1.4660846886333332,
+        "debtToEquity": 1.8002932536235043,
+        "profitMargin": 0.05851363150574565
+      }
+    },
+    {
+      "ticker": "EA0283176",
+      "cik": "1117057",
+      "name": "PLANET GREEN HOLDINGS CORP.",
+      "sic": "2030",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260331",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 4808681,
+        "currentLiabilities": 11879428,
+        "totalLiabilities": 12379921,
+        "equity": -2170043,
+        "revenue": 3040616,
+        "netIncome": -26975710
+      },
+      "metrics": {
+        "currentRatio": 0.4047906178647659,
+        "debtToEquity": -5.704919672098663,
+        "profitMargin": -8.871791110748612
+      }
+    },
+    {
+      "ticker": "POST",
+      "cik": "1530950",
+      "name": "POST HOLDINGS, INC.",
+      "sic": "2040",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260205",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q1",
+      "coverageQuarters": 1,
+      "facts": {
+        "currentAssets": 1972300000,
+        "currentLiabilities": 1039700000,
+        "totalLiabilities": 9516200000,
+        "equity": 3457200000,
+        "revenue": 2174600000,
+        "netIncome": 96800000
+      },
+      "metrics": {
+        "currentRatio": 1.896989516206598,
+        "debtToEquity": 2.7525743376142544,
+        "profitMargin": 0.04451393359698335
+      }
+    },
+    {
+      "ticker": "PRMB",
+      "cik": "2042694",
+      "name": "PRIMO BRANDS CORP",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260227",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 1217800000,
+        "currentLiabilities": 1282700000,
+        "totalLiabilities": 7610200000,
+        "equity": 2992600000,
+        "revenue": 6664000000,
+        "netIncome": 60100000
+      },
+      "metrics": {
+        "currentRatio": 0.9494036017775006,
+        "debtToEquity": 2.5430060816681146,
+        "profitMargin": 0.009018607442977191
+      }
+    },
+    {
+      "ticker": null,
+      "cik": "1140215",
+      "name": "REED'S, INC.",
+      "sic": "2086",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260325",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 21460000,
+        "currentLiabilities": 13387000,
+        "totalLiabilities": 14190000,
+        "equity": 9151000,
+        "revenue": 34065000,
+        "netIncome": -15842000
+      },
+      "metrics": {
+        "currentRatio": 1.6030477328751773,
+        "debtToEquity": 1.5506502021636979,
+        "profitMargin": -0.46505210626742993
+      }
+    },
+    {
+      "ticker": "RMCF",
+      "cik": "1616262",
+      "name": "ROCKY MOUNTAIN CHOCOLATE FACTORY, INC.",
+      "sic": "2060",
+      "form": "10-Q",
+      "period": "20251130",
+      "filed": "20260113",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q3",
+      "coverageQuarters": 3,
+      "facts": {
+        "currentAssets": 9065000,
+        "currentLiabilities": 5463000,
+        "totalLiabilities": 14722000,
+        "equity": 6006000,
+        "revenue": 20739000,
+        "netIncome": -1141000
+      },
+      "metrics": {
+        "currentRatio": 1.6593446824089328,
+        "debtToEquity": 2.451215451215451,
+        "profitMargin": -0.05501711750807657
+      }
+    },
+    {
+      "ticker": "JBSS",
+      "cik": "880117",
+      "name": "SANFILIPPO JOHN B & SON INC",
+      "sic": "2060",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260129",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "Q2",
+      "coverageQuarters": 2,
+      "facts": {
+        "currentAssets": 337216000,
+        "currentLiabilities": 148406000,
+        "totalLiabilities": 247605000,
+        "equity": 370124000,
+        "revenue": 613460000,
+        "netIncome": 36683000
+      },
+      "metrics": {
+        "currentRatio": 2.2722531434039057,
+        "debtToEquity": 0.6689785045011942,
+        "profitMargin": 0.059796889772764324
+      }
+    },
+    {
+      "ticker": "SENEA202",
+      "cik": "88948",
+      "name": "SENECA FOODS CORP",
+      "sic": "2033",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260205",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "Q3",
+      "coverageQuarters": 3,
+      "facts": {
+        "currentAssets": 801294000,
+        "currentLiabilities": 184483000,
+        "totalLiabilities": 508643000,
+        "equity": 713863000,
+        "revenue": null,
+        "netIncome": 89392000
+      },
+      "metrics": {
+        "currentRatio": 4.343457120710309,
+        "debtToEquity": 0.7125218704429281,
+        "profitMargin": null
+      }
+    },
+    {
+      "ticker": "ATK",
+      "cik": "1702744",
+      "name": "SIMPLY GOOD FOODS CO",
+      "sic": "2000",
+      "form": "10-Q",
+      "period": "20251130",
+      "filed": "20260108",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q1",
+      "coverageQuarters": 1,
+      "facts": {
+        "currentAssets": 513839000,
+        "currentLiabilities": 102621000,
+        "totalLiabilities": 716511000,
+        "equity": 1734116000,
+        "revenue": 340198000,
+        "netIncome": 25269000
+      },
+      "metrics": {
+        "currentRatio": 5.0071525321328,
+        "debtToEquity": 0.41318516177695147,
+        "profitMargin": 0.07427733261218467
+      }
+    },
+    {
+      "ticker": "SMF",
+      "cik": "91388",
+      "name": "SMITHFIELD FOODS INC",
+      "sic": "2011",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260324",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 5166000000,
+        "currentLiabilities": 1741000000,
+        "totalLiabilities": null,
+        "equity": 6801000000,
+        "revenue": 15531000000,
+        "netIncome": 987000000
+      },
+      "metrics": {
+        "currentRatio": 2.9672601952900632,
+        "debtToEquity": null,
+        "profitMargin": 0.06355031871740391
+      }
+    },
+    {
+      "ticker": "SDSP",
+      "cik": "1163609",
+      "name": "SOUTH DAKOTA SOYBEAN PROCESSORS LLC",
+      "sic": "2070",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260331",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 183716676,
+        "currentLiabilities": 158339144,
+        "totalLiabilities": null,
+        "equity": 341227011,
+        "revenue": 503815120,
+        "netIncome": 17735646
+      },
+      "metrics": {
+        "currentRatio": 1.1602732676134715,
+        "debtToEquity": null,
+        "profitMargin": 0.03520268704916994
+      }
+    },
+    {
+      "ticker": "SOWG",
+      "cik": "1490161",
+      "name": "SOW GOOD INC.",
+      "sic": "2000",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260331",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 3392778,
+        "currentLiabilities": 6187442,
+        "totalLiabilities": 6337442,
+        "equity": -2562054,
+        "revenue": 0,
+        "netIncome": -40641506
+      },
+      "metrics": {
+        "currentRatio": 0.5483328975043321,
+        "debtToEquity": -2.4735786209033845,
+        "profitMargin": null
+      }
+    },
+    {
+      "ticker": null,
+      "cik": "1471727",
+      "name": "SRX HEALTH SOLUTIONS, INC.",
+      "sic": "2080",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260213",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q1",
+      "coverageQuarters": 1,
+      "facts": {
+        "currentAssets": 18837000,
+        "currentLiabilities": 23529000,
+        "totalLiabilities": 23529000,
+        "equity": 3524000,
+        "revenue": 2807000,
+        "netIncome": -8614000
+      },
+      "metrics": {
+        "currentRatio": 0.8005865102639296,
+        "debtToEquity": 6.676787741203178,
+        "profitMargin": -3.0687566797292485
+      }
+    },
+    {
+      "ticker": null,
+      "cik": "351834",
+      "name": "SUNOPTA INC.",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260304",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 219753000,
+        "currentLiabilities": 186245000,
+        "totalLiabilities": 508639000,
+        "equity": 170797000,
+        "revenue": 817715000,
+        "netIncome": 15768000
+      },
+      "metrics": {
+        "currentRatio": 1.1799135547263013,
+        "debtToEquity": 2.978032401037489,
+        "profitMargin": 0.019283002023932544
+      }
+    },
+    {
+      "ticker": "TR",
+      "cik": "98677",
+      "name": "TOOTSIE ROLL INDUSTRIES INC",
+      "sic": "2060",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260227",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 321468000,
+        "currentLiabilities": 98452000,
+        "totalLiabilities": null,
+        "equity": 940972000,
+        "revenue": 732524000,
+        "netIncome": 100052000
+      },
+      "metrics": {
+        "currentRatio": 3.265225693739081,
+        "debtToEquity": null,
+        "profitMargin": 0.13658528594284966
+      }
+    },
+    {
+      "ticker": "TSN",
+      "cik": "100493",
+      "name": "TYSON FOODS, INC.",
+      "sic": "2015",
+      "form": "10-Q",
+      "period": "20251231",
+      "filed": "20260202",
+      "fiscalYear": "2026",
+      "fiscalPeriod": "Q1",
+      "coverageQuarters": 1,
+      "facts": {
+        "currentAssets": 9512000000,
+        "currentLiabilities": 6203000000,
+        "totalLiabilities": null,
+        "equity": 18023000000,
+        "revenue": 14313000000,
+        "netIncome": 85000000
+      },
+      "metrics": {
+        "currentRatio": 1.5334515556988555,
+        "debtToEquity": null,
+        "profitMargin": 0.005938657164815203
+      }
+    },
+    {
+      "ticker": "UTZ",
+      "cik": "1739566",
+      "name": "UTZ BRANDS, INC.",
+      "sic": "2090",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260212",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 384400000,
+        "currentLiabilities": 323200000,
+        "totalLiabilities": 1448700000,
+        "equity": 713700000,
+        "revenue": 1438800000,
+        "netIncome": 800000
+      },
+      "metrics": {
+        "currentRatio": 1.1893564356435644,
+        "debtToEquity": 2.029844472467423,
+        "profitMargin": 0.0005560189046427579
+      }
+    },
+    {
+      "ticker": "COCO",
+      "cik": "1482981",
+      "name": "VITA COCO COMPANY, INC.",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260218",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 421440000,
+        "currentLiabilities": 116432000,
+        "totalLiabilities": 129616000,
+        "equity": 331542000,
+        "revenue": null,
+        "netIncome": 71320000
+      },
+      "metrics": {
+        "currentRatio": 3.6196234712106636,
+        "debtToEquity": 0.39094895970947874,
+        "profitMargin": null
+      }
+    },
+    {
+      "ticker": "VITL",
+      "cik": "1579733",
+      "name": "VITAL FARMS, INC.",
+      "sic": "2000",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260226",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 262550000,
+        "currentLiabilities": 121578000,
+        "totalLiabilities": 167478000,
+        "equity": 351260000,
+        "revenue": 759444000,
+        "netIncome": 66282000
+      },
+      "metrics": {
+        "currentRatio": 2.159518991922881,
+        "debtToEquity": 0.47679211979730113,
+        "profitMargin": 0.08727700791631773
+      }
+    },
+    {
+      "ticker": "WEST",
+      "cik": "1806347",
+      "name": "WESTROCK COFFEE CO",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260310",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 396359000,
+        "currentLiabilities": 413630000,
+        "totalLiabilities": 904343000,
+        "equity": -1868000,
+        "revenue": 1188952000,
+        "netIncome": -90445000
+      },
+      "metrics": {
+        "currentRatio": 0.9582452916858062,
+        "debtToEquity": -484.12366167023555,
+        "profitMargin": -0.07607119547298798
+      }
+    },
+    {
+      "ticker": "WVVI",
+      "cik": "838875",
+      "name": "WILLAMETTE VALLEY VINEYARDS INC",
+      "sic": "2080",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260324",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 39005575,
+        "currentLiabilities": 14467920,
+        "totalLiabilities": 41547424,
+        "equity": 66188175,
+        "revenue": 37197122,
+        "netIncome": -917685
+      },
+      "metrics": {
+        "currentRatio": 2.6960043323435574,
+        "debtToEquity": 0.6277167182808712,
+        "profitMargin": -0.024670860288599748
+      }
+    },
+    {
+      "ticker": "ZVIA2025",
+      "cik": "1854139",
+      "name": "ZEVIA PBC",
+      "sic": "2086",
+      "form": "10-K",
+      "period": "20251231",
+      "filed": "20260225",
+      "fiscalYear": "2025",
+      "fiscalPeriod": "FY",
+      "coverageQuarters": 4,
+      "facts": {
+        "currentAssets": 58220000,
+        "currentLiabilities": 28019000,
+        "totalLiabilities": 28019000,
+        "equity": 51039000,
+        "revenue": 161259000,
+        "netIncome": -9920000
+      },
+      "metrics": {
+        "currentRatio": 2.0778757271851243,
+        "debtToEquity": 0.5489723544740297,
+        "profitMargin": -0.061515946396790255
+      }
+    }
+  ]
+}
+
