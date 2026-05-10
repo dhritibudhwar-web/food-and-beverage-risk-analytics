@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SME Risk Analytics</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+      background: #f2f1ec;
+      min-height: 100vh;
+      color: #1a1a18;
+    }
+
+    #shell {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    /* Header */
+    #app-header {
+      border-bottom: 2px solid #1a1a18;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    #app-header h1 {
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    #app-header .subtitle {
+      font-size: 11px;
+      color: #666;
+      margin-top: 2px;
+      font-family: monospace;
+    }
+    .badge {
+      font-family: monospace;
+      font-size: 10px;
+      background: #1a1a18;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.07em;
+    }
+
+    /* Step bar */
+    #step-bar {
+      display: flex;
+      border: 1.5px solid #d8d7d0;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.75rem;
+    }
+    .step-pill {
+      flex: 1;
+      padding: 9px 6px;
+      text-align: center;
+      font-family: monospace;
+      font-size: 11px;
+      border-right: 1px solid #d8d7d0;
+      background: #faf9f5;
+      color: #999;
+    }
+    .step-pill:last-child { border-right: none; }
+    .step-pill .step-num { font-size: 10px; opacity: 0.6; margin-bottom: 1px; }
+    .step-pill.active { background: #1a1a18; color: #fff; }
+    .step-pill.done { background: #e6f4ed; color: #1e6641; }
+
+    /* Cards */
+    .card {
+      background: #fff;
+      border: 1.5px solid #d8d7d0;
+      border-radius: 10px;
+      padding: 1.25rem 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .card-title {
+      font-family: monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #666;
+      margin-bottom: 0.9rem;
+    }
+    .hint {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    /* Inputs & Buttons */
+    input[type="text"], input[type="number"] {
+      height: 44px;
+      padding: 0 14px;
+      border: 1.5px solid #d8d7d0;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      background: #faf9f5;
+      color: #1a1a18;
+      outline: none;
+      width: 100%;
+    }
+    input[type="text"]:focus, input[type="number"]:focus {
+      border-color: #1a1a18;
+    }
+
+    .btn-primary {
+      height: 44px;
+      padding: 0 22px;
+      background: #1a1a18;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { background: #333; }
+
+    .btn-secondary {
+      height: 40px;
+      padding: 0 16px;
+      background: transparent;
+      color: #1a1a18;
+      border: 1.5px solid #d8d7d0;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .btn-secondary:hover { background: #f5f5f0; }
+
+    .btn-small {
+      font-size: 11px;
+      background: none;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 2px 8px;
+      cursor: pointer;
+      font-family: monospace;
+      color: #666;
+    }
+    .btn-small:hover { background: #f5f5f0; }
+
+    .row { display: flex; gap: 10px; }
+    .row-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    /* Error box */
+    .error-box {
+      background: #fdeaea;
+      border: 1px solid #e8a8a8;
+      color: #8b1a1a;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    /* Confidence badges */
+    .conf-badge {
+      font-family: monospace;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+    .conf-high { background: #e6f4ed; color: #1e6641; }
+    .conf-medium { background: #fef3e2; color: #7a4800; }
+    .conf-low { background: #fdeaea; color: #8b1a1a; }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead tr { background: #faf9f5; }
+    th {
+      font-family: monospace;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #999;
+      padding: 7px 10px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    td { padding: 9px 10px; border-bottom: 1px solid #f0f0f0; }
+    .td-label { font-weight: 500; }
+    .td-sublabel { font-size: 11px; color: #aaa; }
+    .td-mono { font-family: monospace; font-size: 12px; }
+    .td-source { font-size: 10px; color: #aaa; font-family: monospace; max-width: 160px; }
+    .edited-tag { font-size: 10px; color: #7a4800; margin-left: 4px; }
+    .row-low-conf { background: #fffbf2; }
+
+    /* Inline edit input */
+    .inline-edit-wrap { display: flex; gap: 6px; align-items: center; }
+    .inline-edit-input {
+      width: 90px !important;
+      height: 30px !important;
+      padding: 0 8px !important;
+      border: 1.5px solid #1a1a18 !important;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    /* Internal ratings grid */
+    .ratings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .rating-label { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+    .rating-sub { font-size: 11px; color: #888; margin-bottom: 8px; }
+    .rating-buttons { display: flex; gap: 6px; }
+    .rating-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      border: 1.5px solid #ddd;
+      background: #faf9f5;
+      color: #888;
+      font-family: monospace;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .rating-btn.selected {
+      border-color: #1a1a18;
+      background: #1a1a18;
+      color: #fff;
+    }
+    .fa-preview {
+      margin-top: 16px;
+      padding: 12px;
+      background: #faf9f5;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #666;
+    }
+    .fa-preview strong { font-family: monospace; font-weight: 700; }
+
+    /* How it works grid */
+    .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .how-item { font-size: 12px; color: #666; display: flex; gap: 8px; }
+    .how-num { font-family: monospace; font-weight: 700; color: #1a1a18; }
+
+    /* Results */
+    .verdict-box {
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1.5px solid;
+    }
+    .verdict-company { font-family: monospace; font-size: 11px; font-weight: 700; color: #888; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 4px; }
+    .verdict-category { font-family: monospace; font-size: 34px; font-weight: 700; }
+    .verdict-right { text-align: right; font-family: monospace; font-size: 12px; color: #666; line-height: 1.8; }
+
+    /* Score bar */
+    .score-bar-wrap { position: relative; margin-bottom: 6px; }
+    .score-bar-track { display: flex; height: 12px; border-radius: 6px; overflow: hidden; }
+    .score-bar-low { flex: 0 0 38%; background: #b8e6cc; }
+    .score-bar-med { flex: 0 0 30%; background: #fde8a8; }
+    .score-bar-high { flex: 1; background: #f8b8b8; }
+    .score-marker {
+      position: absolute;
+      top: -4px;
+      width: 3px;
+      height: 20px;
+      background: #1a1a18;
+      border-radius: 2px;
+      transform: translateX(-50%);
+    }
+    .score-bar-labels { display: flex; justify-content: space-between; font-family: monospace; font-size: 10px; color: #aaa; }
+
+    /* Dimension cards */
+    .dim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .dim-card {
+      background: #faf9f5;
+      border: 1px solid #ebe9e0;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .dim-name { font-family: monospace; font-size: 11px; font-weight: 700; color: #888; margin-bottom: 4px; }
+    .dim-value { font-family: monospace; font-size: 24px; font-weight: 600; }
+    .dim-value span { font-size: 12px; color: #aaa; }
+    .dim-bar-track { height: 4px; background: #e8e7e0; border-radius: 2px; margin-top: 6px; overflow: hidden; }
+    .dim-bar-fill { height: 100%; border-radius: 2px; }
+    .dim-desc { font-size: 11px; color: #aaa; margin-top: 5px; }
+    .formula-note { font-size: 11px; color: #aaa; }
+
+    /* Risk flags */
+    .flag-item { display: flex; gap: 8px; padding: 7px 0; font-size: 13px; color: #666; border-bottom: 1px solid #f0f0f0; }
+    .flag-item:last-child { border-bottom: none; }
+    .flag-dot { width: 6px; height: 6px; background: #7a4800; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+
+    /* Audit trail */
+    .audit-section-head {
+      font-family: monospace;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #aaa;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+    }
+    .audit-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 12px; border-bottom: 1px solid #f5f5f5; }
+    .audit-row:last-child { border-bottom: none; }
+    .audit-key { font-family: monospace; color: #888; }
+    .audit-val { font-family: monospace; text-align: right; }
+    .audit-sub { font-size: 10px; color: #bbb; font-family: monospace; }
+    .audit-edited { font-size: 10px; color: #7a4800; margin-left: 4px; }
+    .audit-toggle-btn {
+      font-size: 11px;
+      background: none;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 3px 10px;
+      cursor: pointer;
+      font-family: monospace;
+      color: #666;
+      margin-bottom: 0.9rem;
+    }
+
+    /* Loading */
+    .spinner { animation: spin 1.2s linear infinite; display: inline-block; }
+    .progress-bar-outer { height: 4px; background: #eee; border-radius: 2px; overflow: hidden; }
+    .progress-bar-inner { height: 100%; width: 60%; background: #1a1a18; border-radius: 2px; animation: slide 2s ease-in-out infinite; }
+
+    @keyframes slide { 0%{transform:translateX(-100%)} 100%{transform:translateX(200%)} }
+    @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+    .disclaimer { font-size: 11px; color: #aaa; margin-top: 1.5rem; text-align: center; font-style: italic; line-height: 1.8; }
+    .audit-note { font-size: 11px; color: #aaa; margin-top: 10px; font-style: italic; }
+
+    @media (max-width: 520px) {
+      .ratings-grid, .dim-grid, .how-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div id="shell">
+  <!-- Header -->
+  <div id="app-header">
+    <div>
+      <h1>SME Risk Analytics</h1>
+      <div class="subtitle">AI-Augmented Financial Risk Assessment · v2</div>
+    </div>
+    <div class="badge">ANALYTICAL USE ONLY</div>
+  </div>
+
+  <!-- Step bar -->
+  <div id="step-bar"></div>
+
+  <!-- Content area -->
+  <div id="content"></div>
+</div>
+
+<script>
+// ── Data ─────────────────────────────────────────────────────────────────────
+const NORM = {
+  current_ratio:     { min: 0.5,   max: 3.0,  dir: 1  },
+  quick_ratio:       { min: 0.3,   max: 2.0,  dir: 1  },
+  debt_to_equity:    { min: 0.1,   max: 4.0,  dir: -1 },
+  interest_coverage: { min: 0.5,   max: 10.0, dir: 1  },
+  net_margin:        { min: -0.1,  max: 0.25, dir: 1  },
+  roa:               { min: -0.05, max: 0.20, dir: 1  },
+  asset_turnover:    { min: 0.2,   max: 2.5,  dir: 1  },
+  revenue_growth:    { min: -0.1,  max: 0.4,  dir: 1  },
+};
+const THRESHOLDS = { low_to_medium: 6.43, medium_to_high: 8.91, min: 1.59, max: 14.08 };
+const DEFAULTS = {
+  current_ratio: 1.5, quick_ratio: 1.0, debt_to_equity: 1.5, interest_coverage: 2.0,
+  net_margin: 0.05, roa: 0.03, asset_turnover: 0.8, revenue_growth: 0.05
+};
+const RATIO_FIELDS = [
+  { key: "current_ratio",     label: "Current ratio",        unit: "x", hint: "Current assets / current liabilities" },
+  { key: "quick_ratio",       label: "Quick ratio",          unit: "x", hint: "(Current assets − inventory) / current liabilities" },
+  { key: "debt_to_equity",    label: "Debt-to-equity",       unit: "x", hint: "Total debt / shareholders equity" },
+  { key: "interest_coverage", label: "Interest coverage",    unit: "x", hint: "EBIT / interest expense" },
+  { key: "net_margin",        label: "Net profit margin",    unit: "%", hint: "Enter as decimal: 0.08 = 8%" },
+  { key: "roa",               label: "Return on assets",     unit: "%", hint: "Enter as decimal: 0.05 = 5%" },
+  { key: "asset_turnover",    label: "Asset turnover",       unit: "x", hint: "Revenue / total assets" },
+  { key: "revenue_growth",    label: "Revenue growth (YoY)", unit: "%", hint: "Enter as decimal: 0.12 = 12%" },
+];
+const INTERNAL_FIELDS = [
+  { key: "management_quality",  label: "Management quality",  sub: "Competence, experience and track record of leadership" },
+  { key: "payment_history",     label: "Payment history",      sub: "5 = always on time, 1 = frequent delays or defaults" },
+  { key: "collateral_quality",  label: "Collateral quality",   sub: "Quality and liquidity of assets offered as security" },
+  { key: "credit_score_rating", label: "Credit score band",    sub: "5 = excellent, 3 = fair, 1 = poor internal credit rating" },
+];
+const STEPS = ["Search", "AI gather", "Validate", "Ratings", "Result"];
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let state = {
+  step: 1,
+  company: "",
+  loading: false,
+  loadingMsg: "",
+  error: null,
+  aiResult: null,
+  editedRatios: {},
+  editingKey: null,
+  editingVal: "",
+  internal: { management_quality: 0, payment_history: 0, collateral_quality: 0, credit_score_rating: 0 },
+  scores: null,
+  finalRatios: {},
+  showAudit: false,
+};
+
+// ── Scoring ───────────────────────────────────────────────────────────────────
+function normScore(value, key) {
+  const p = NORM[key]; if (!p) return 3;
+  const clipped = Math.min(Math.max(parseFloat(value), p.min), p.max);
+  const raw = (clipped - p.min) / (p.max - p.min);
+  return Math.round((p.dir === 1 ? raw * 4 + 1 : (1 - raw) * 4 + 1) * 100) / 100;
+}
+function computeScores(ratios, internal) {
+  const FL = (normScore(ratios.current_ratio,"current_ratio") + normScore(ratios.quick_ratio,"quick_ratio") +
+              normScore(ratios.interest_coverage,"interest_coverage") + normScore(ratios.debt_to_equity,"debt_to_equity")) / 4;
+  const FR = (normScore(ratios.debt_to_equity,"debt_to_equity") + normScore(ratios.interest_coverage,"interest_coverage") +
+              normScore(ratios.roa,"roa") + normScore(ratios.revenue_growth,"revenue_growth")) / 4;
+  const RA = (normScore(ratios.net_margin,"net_margin") + normScore(ratios.roa,"roa") +
+              normScore(ratios.asset_turnover,"asset_turnover") + normScore(ratios.revenue_growth,"revenue_growth")) / 4;
+  const FA = (internal.management_quality + internal.payment_history + internal.collateral_quality + internal.credit_score_rating) / 4;
+  const risk_score = (5 - FL) + (5 - FR) + (5 - RA) + (5 - FA);
+  const risk_category = risk_score <= THRESHOLDS.low_to_medium ? "Low Risk" : risk_score >= THRESHOLDS.medium_to_high ? "High Risk" : "Medium Risk";
+  return { FL_avg: FL, FR_avg: FR, RA_avg: RA, FA_avg: FA, risk_score, risk_category };
+}
+
+// ── Claude API ────────────────────────────────────────────────────────────────
+async function fetchRatiosFromClaude(companyName) {
+  const system = `You are a financial analyst. Search the web for financial data on the given company and return ONLY valid JSON — no markdown, no explanation.
+
+Return this exact structure:
+{
+  "company_name": "...",
+  "fiscal_year": "FY2024",
+  "entity_type": "SME | Large-cap | Public-listed | Unknown",
+  "ratios": {
+    "current_ratio":     { "value": NUMBER_OR_NULL, "confidence": "high|medium|low", "source": "..." },
+    "quick_ratio":       { "value": NUMBER_OR_NULL, "confidence": "high|medium|low", "source": "..." },
+    "debt_to_equity":    { "value": NUMBER_OR_NULL, "confidence": "high|medium|low", "source": "..." },
+    "interest_coverage": { "value": NUMBER_OR_NULL, "confidence": "high|medium|low", "source": "..." },
+    "net_margin":        { "value": NUMBER_OR_NULL, "confidence": "high|medium|low", "source": "..." },
+    "roa":               { "value": NUMBER_OR_NULL, "confidence": "high|medium|low", "source": "..." },
+    "asset_turnover":    { "value": NUMBER_OR_NULL, "confidence": "high|medium|low", "source": "..." },
+    "revenue_growth":    { "value": NUMBER_OR_NULL, "confidence": "high|medium|low", "source": "..." }
+  },
+  "notes": "..."
+}
+
+Rules:
+- net_margin, roa, revenue_growth must be decimals (0.08 = 8%, NOT 8)
+- confidence: "high" = audited statements, "medium" = reports/press estimates, "low" = inferred/unavailable
+- If a value truly cannot be found, use null and "low" confidence
+- source: e.g. "ASX annual report FY2023", "Bloomberg estimate", "industry benchmark"`;
+
+  const response = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 2000,
+      system,
+      tools: [{ type: "web_search_20250305", name: "web_search" }],
+      messages: [{ role: "user", content: `Find financial ratios for: ${companyName}` }],
+    }),
+  });
+  if (!response.ok) {
+    const err = await response.text();
+    throw new Error(`API error ${response.status}: ${err.slice(0, 200)}`);
+  }
+  const data = await response.json();
+  const text = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n");
+  const clean = text.replace(/```json\s*/g, "").replace(/```\s*/g, "").trim();
+  const match = clean.match(/\{[\s\S]*\}/);
+  if (!match) throw new Error("No JSON found in response. Raw: " + clean.slice(0, 200));
+  return JSON.parse(match[0]);
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function escape(str) {
+  return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function confBadge(conf) {
+  const map = { high: ["conf-high","High"], medium: ["conf-medium","Medium"], low: ["conf-low","Low — verify"] };
+  const [cls, label] = map[conf] || map.low;
+  return `<span class="conf-badge ${cls}">${label}</span>`;
+}
+function faPreview() {
+  const vals = Object.values(state.internal);
+  return vals.every(v => v > 0) ? (vals.reduce((a,b) => a+b, 0) / 4).toFixed(2) : "—";
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function render() {
+  renderStepBar();
+  renderContent();
+}
+
+function renderStepBar() {
+  const bar = document.getElementById("step-bar");
+  bar.innerHTML = STEPS.map((label, i) => {
+    const n = i + 1;
+    const status = n < state.step ? "done" : n === state.step ? "active" : "";
+    return `<div class="step-pill ${status}">
+      <div class="step-num">0${n}</div>${label}
+    </div>`;
+  }).join("");
+}
+
+function renderContent() {
+  const content = document.getElementById("content");
+  let html = "";
+
+  // Step 1
+  if (state.step === 1) {
+    const errHtml = state.error
+      ? `<div class="error-box"><strong>Error:</strong> ${escape(state.error)}</div>` : "";
+    html = `
+      ${errHtml}
+      <div class="card">
+        <div class="card-title">Company lookup</div>
+        <p class="hint">Type any company name. AI will search for publicly available financial data — annual reports, ASX filings, financial press — and return structured ratios for your model.</p>
+        <div class="row" style="margin-bottom:0">
+          <input type="text" id="company-input" style="flex:1" placeholder="e.g. Atlassian, Canva, Lendlease…" value="${escape(state.company)}" />
+          <button class="btn-primary" id="assess-btn">Assess risk →</button>
+        </div>
+        <p style="font-size:11px;color:#aaa;margin-top:8px">Works best for companies with public filings, ASX listings, or press coverage.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">How it works</div>
+        <div class="how-grid">
+          ${["AI searches ASIC, annual reports and financial press for your company","Every field returned with a confidence level and source citation","You review and edit anything that looks wrong before it enters the model","You provide 4 internal ratings AI can't find — then model runs"].map((t, i) =>
+            `<div class="how-item"><span class="how-num">0${i+1}</span><span>${t}</span></div>`
+          ).join("")}
+        </div>
+      </div>`;
+  }
+
+  // Step 2 (loading)
+  if (state.step === 2 && state.loading) {
+    html = `
+      <div class="card">
+        <div class="card-title" style="display:flex;align-items:center;gap:8px">
+          <span class="spinner">⟳</span>
+          AI gathering data for "${escape(state.company)}"
+        </div>
+        <p style="font-size:13px;color:#666;margin-bottom:14px">${escape(state.loadingMsg)}</p>
+        <div class="progress-bar-outer"><div class="progress-bar-inner"></div></div>
+      </div>`;
+  }
+
+  // Step 3 (validate)
+  if (state.step === 3) {
+    const ai = state.aiResult;
+    const foundLine = ai?.company_name
+      ? `<span style="color:#1a1a18;font-weight:600"> Found: ${escape(ai.company_name)}${ai.fiscal_year ? ` · ${escape(ai.fiscal_year)}` : ""}${ai.entity_type ? ` · ${escape(ai.entity_type)}` : ""}</span>` : "";
+
+    const rows = RATIO_FIELDS.map(f => {
+      const aiField = ai?.ratios?.[f.key] || {};
+      const conf = aiField.confidence || "low";
+      const isLow = conf === "low" || aiField.value == null;
+      const current = state.editedRatios[f.key];
+      const aiVal = aiField.value;
+      const isEdited = current != null && aiVal != null && Math.abs(current - aiVal) > 0.0001;
+      const displayVal = current != null
+        ? (f.unit === "%" ? (current * 100).toFixed(2) + "%" : current.toFixed(3) + f.unit)
+        : "—";
+
+      let valueCell;
+      if (state.editingKey === f.key) {
+        valueCell = `<div class="inline-edit-wrap">
+          <input type="number" step="any" class="inline-edit-input" id="inline-input" value="${escape(state.editingVal)}" data-key="${f.key}" />
+          <span style="font-size:10px;color:#aaa">${f.unit === "%" ? "(decimal)" : f.unit}</span>
+        </div>`;
+      } else {
+        valueCell = `<span class="td-mono">${displayVal}${isEdited ? `<span class="edited-tag">(edited)</span>` : ""}</span>`;
+      }
+
+      return `<tr class="${isLow ? "row-low-conf" : ""}">
+        <td><div class="td-label">${escape(f.label)}</div><div class="td-sublabel">${escape(f.hint)}</div></td>
+        <td>${valueCell}</td>
+        <td>${confBadge(conf)}</td>
+        <td class="td-source">${escape(aiField.source || "Not found")}</td>
+        <td><button class="btn-small" data-edit="${f.key}">edit</button></td>
+      </tr>`;
+    }).join("");
+
+    html = `
+      <div class="card">
+        <div class="card-title">Review AI-gathered data</div>
+        <p class="hint">Check each field. Click <strong>edit</strong> on anything incorrect — this data feeds directly into the model.${foundLine}</p>
+        <div style="overflow-x:auto">
+          <table>
+            <thead><tr>${["Field","Value","Confidence","Source",""].map(h=>`<th>${h}</th>`).join("")}</tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <div class="row-between">
+          <button class="btn-secondary" id="reset-btn">← Start over</button>
+          <button class="btn-primary" id="continue-btn">Confirmed — continue →</button>
+        </div>
+      </div>`;
+  }
+
+  // Step 4 (internal ratings)
+  if (state.step === 4) {
+    const ratingCards = INTERNAL_FIELDS.map(f => {
+      const btns = [1,2,3,4,5].map(n =>
+        `<button class="rating-btn${state.internal[f.key] === n ? " selected" : ""}" data-field="${f.key}" data-val="${n}">${n}</button>`
+      ).join("");
+      return `<div>
+        <div class="rating-label">${escape(f.label)}</div>
+        <div class="rating-sub">${escape(f.sub)}</div>
+        <div class="rating-buttons">${btns}</div>
+      </div>`;
+    }).join("");
+
+    html = `
+      <div class="card">
+        <div class="card-title">Internal ratings — analyst input only</div>
+        <p class="hint">These four dimensions cannot be sourced from public data. Rate each 1 (very weak) to 5 (very strong) based on your internal assessment.</p>
+        <div class="ratings-grid">${ratingCards}</div>
+        <div class="fa-preview">
+          <strong>FA dimension</strong> (Asset Quality) = average of these 4 ratings. Current average: <strong>${faPreview()}</strong>
+        </div>
+        <div class="row-between">
+          <button class="btn-secondary" id="back-btn">← Back</button>
+          <button class="btn-primary" id="run-btn">Run model →</button>
+        </div>
+      </div>`;
+  }
+
+  // Step 5 (result)
+  if (state.step === 5 && state.scores) {
+    const s = state.scores;
+    const cat = s.risk_category;
+    const isLow = cat === "Low Risk", isHigh = cat === "High Risk";
+    const verdictBg = isLow ? "#e6f4ed" : isHigh ? "#fdeaea" : "#fef3e2";
+    const verdictBorder = isLow ? "#a8d5bc" : isHigh ? "#e8a8a8" : "#f0c97a";
+    const verdictColor = isLow ? "#1e6641" : isHigh ? "#8b1a1a" : "#7a4800";
+    const pct = ((s.risk_score - THRESHOLDS.min) / (THRESHOLDS.max - THRESHOLDS.min)) * 100;
+    const safeP = Math.min(Math.max(pct, 1), 99);
+
+    const flags = [];
+    if (state.finalRatios.current_ratio < 1) flags.push("Current ratio below 1.0 — potential near-term liquidity crisis");
+    if (state.finalRatios.debt_to_equity > 2.5) flags.push("High debt-to-equity — elevated leverage and financial risk");
+    if (state.finalRatios.net_margin < 0) flags.push("Negative net profit margin — company operating at a loss");
+    if (state.finalRatios.interest_coverage < 1.5) flags.push("Low interest coverage — risk of defaulting on debt obligations");
+    if (state.finalRatios.revenue_growth < -0.05) flags.push("Revenue declining year-over-year");
+    if (state.internal.credit_score_rating <= 2) flags.push("Low internal credit score rating — review credit file");
+    if (state.internal.payment_history <= 2) flags.push("Poor payment history — consider tighter payment terms");
+
+    const companyLabel = state.aiResult?.company_name || state.company;
+    const fyLabel = state.aiResult?.fiscal_year ? ` · ${state.aiResult.fiscal_year}` : "";
+
+    const dimCards = [
+      { key: "FL_avg", name: "FL — Liquidity",           desc: "Current ratio, quick ratio, interest coverage, D/E" },
+      { key: "FR_avg", name: "FR — Financial resilience", desc: "Debt, interest coverage, ROA, revenue growth" },
+      { key: "RA_avg", name: "RA — Revenue & assets",    desc: "Net margin, ROA, asset turnover, revenue growth" },
+      { key: "FA_avg", name: "FA — Asset quality",       desc: "Internal analyst ratings (4 dimensions)" },
+    ].map(d => {
+      const v = s[d.key];
+      const barColor = v >= 3.5 ? "#1e6641" : v >= 2 ? "#7a4800" : "#8b1a1a";
+      return `<div class="dim-card">
+        <div class="dim-name">${d.name}</div>
+        <div class="dim-value">${v.toFixed(2)}<span> / 5</span></div>
+        <div class="dim-bar-track"><div class="dim-bar-fill" style="width:${(v/5)*100}%;background:${barColor}"></div></div>
+        <div class="dim-desc">${d.desc}</div>
+      </div>`;
+    }).join("");
+
+    const flagsHtml = flags.length > 0 ? `
+      <div class="card">
+        <div class="card-title">Risk flags</div>
+        ${flags.map(f => `<div class="flag-item"><div class="flag-dot"></div>${escape(f)}</div>`).join("")}
+      </div>` : "";
+
+    // Audit rows
+    const auditRatioRows = RATIO_FIELDS.map(f => {
+      const ai = state.aiResult?.ratios?.[f.key] || {};
+      const fv = state.finalRatios[f.key];
+      const isEdited = ai.value != null && Math.abs(fv - ai.value) > 0.0001;
+      const dispVal = f.unit === "%" ? (fv * 100).toFixed(2) + "%" : fv.toFixed(4);
+      const editedFrom = isEdited ? (f.unit === "%" ? (ai.value * 100).toFixed(2) + "%" : ai.value?.toFixed(4)) : null;
+      return `<div class="audit-row">
+        <span class="audit-key">${escape(f.label)}</span>
+        <div class="audit-val">
+          <span>${escape(dispVal)}${isEdited ? `<span class="audit-edited">(edited from ${escape(editedFrom)})</span>` : ""}</span>
+          <div class="audit-sub">${escape(ai.source || "manual entry")} · ${escape(ai.confidence || "—")} · normalised → ${normScore(fv, f.key).toFixed(3)}/5</div>
+        </div>
+      </div>`;
+    }).join("");
+
+    const auditInternalRows = INTERNAL_FIELDS.map(f =>
+      `<div class="audit-row">
+        <span class="audit-key">${escape(f.label)}</span>
+        <span class="audit-val">${state.internal[f.key]} / 5</span>
+      </div>`
+    ).join("");
+
+    const auditScoreRows = ["FL_avg","FR_avg","RA_avg","FA_avg","risk_score"].map(k =>
+      `<div class="audit-row">
+        <span class="audit-key">${k}</span>
+        <span class="audit-val">${s[k].toFixed(4)}</span>
+      </div>`
+    ).join("") + `<div class="audit-row">
+      <span class="audit-key">risk_category</span>
+      <span class="audit-val">${escape(s.risk_category)}</span>
+    </div>`;
+
+    const auditBody = state.showAudit ? `
+      <div class="audit-section-head">AI-gathered ratios</div>
+      ${auditRatioRows}
+      <div class="audit-section-head" style="margin-top:12px">Internal ratings</div>
+      ${auditInternalRows}
+      <div class="audit-section-head" style="margin-top:12px">Computed scores</div>
+      ${auditScoreRows}` : "";
+
+    html = `
+      <!-- Verdict -->
+      <div class="verdict-box" style="background:${verdictBg};border-color:${verdictBorder}">
+        <div>
+          <div class="verdict-company">${escape(companyLabel)}${escape(fyLabel)}</div>
+          <div class="verdict-category" style="color:${verdictColor}">${escape(cat)}</div>
+        </div>
+        <div class="verdict-right">
+          Risk score: <strong>${s.risk_score.toFixed(2)}</strong><br>
+          Low ≤ ${THRESHOLDS.low_to_medium} · High ≥ ${THRESHOLDS.medium_to_high}
+        </div>
+      </div>
+
+      <!-- Score position bar -->
+      <div class="card">
+        <div class="card-title">Score position</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-track">
+            <div class="score-bar-low"></div>
+            <div class="score-bar-med"></div>
+            <div class="score-bar-high"></div>
+          </div>
+          <div class="score-marker" style="left:${safeP}%"></div>
+        </div>
+        <div class="score-bar-labels">
+          <span>1.59</span>
+          <span>← Low | 6.43 | Medium | 8.91 | High →</span>
+          <span>14.08</span>
+        </div>
+      </div>
+
+      <!-- Dimensions -->
+      <div class="card">
+        <div class="card-title">Dimension breakdown</div>
+        <div class="dim-grid">${dimCards}</div>
+        <p class="formula-note">Formula: risk_score = (5−FL) + (5−FR) + (5−RA) + (5−FA). Normalised from real financial ratios using Altman Z-Score benchmarks. Higher = higher risk.</p>
+      </div>
+
+      ${flagsHtml}
+
+      <!-- Audit trail -->
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:${state.showAudit ? "12px" : "0"}">
+          <div class="card-title">Full audit trail</div>
+          <button class="audit-toggle-btn" id="audit-toggle">${state.showAudit ? "hide" : "show"}</button>
+        </div>
+        ${auditBody}
+        <p class="audit-note">Every field: source, confidence, AI value, final value used, normalised score, computed averages.</p>
+      </div>
+
+      <div class="row-between">
+        <button class="btn-secondary" id="reset-btn">← New assessment</button>
+        <button class="btn-secondary" id="back-to-ratings-btn">← Edit internal ratings</button>
+      </div>
+
+      <p class="disclaimer">
+        Risk scores are derived from publicly available data and modelled financial benchmarks. They should be validated by a qualified financial analyst before any credit, investment, or lending decisions are made.
+      </p>`;
+  }
+
+  content.innerHTML = html;
+  attachEvents();
+}
+
+// ── Event handlers ─────────────────────────────────────────────────────────────
+function attachEvents() {
+  // Step 1
+  const companyInput = document.getElementById("company-input");
+  if (companyInput) {
+    companyInput.addEventListener("input", e => { state.company = e.target.value; });
+    companyInput.addEventListener("keydown", e => { if (e.key === "Enter") startAssessment(); });
+    companyInput.focus();
+  }
+  const assessBtn = document.getElementById("assess-btn");
+  if (assessBtn) assessBtn.addEventListener("click", startAssessment);
+
+  // Step 3 – edit buttons
+  document.querySelectorAll("[data-edit]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.edit;
+      state.editingKey = key;
+      state.editingVal = state.editedRatios[key] != null ? String(state.editedRatios[key]) : "";
+      render();
+      const inp = document.getElementById("inline-input");
+      if (inp) { inp.focus(); inp.select(); }
+    });
+  });
+  const inlineInput = document.getElementById("inline-input");
+  if (inlineInput) {
+    inlineInput.addEventListener("input", e => { state.editingVal = e.target.value; });
+    inlineInput.addEventListener("blur", () => saveEdit());
+    inlineInput.addEventListener("keydown", e => { if (e.key === "Enter") saveEdit(); });
+  }
+  const resetBtn = document.getElementById("reset-btn");
+  if (resetBtn) resetBtn.addEventListener("click", reset);
+  const continueBtn = document.getElementById("continue-btn");
+  if (continueBtn) continueBtn.addEventListener("click", () => { state.step = 4; render(); });
+
+  // Step 4 – rating buttons
+  document.querySelectorAll(".rating-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.internal[btn.dataset.field] = parseInt(btn.dataset.val);
+      render();
+    });
+  });
+  const backBtn = document.getElementById("back-btn");
+  if (backBtn) backBtn.addEventListener("click", () => { state.step = 3; render(); });
+  const runBtn = document.getElementById("run-btn");
+  if (runBtn) runBtn.addEventListener("click", runModel);
+
+  // Step 5
+  const auditToggle = document.getElementById("audit-toggle");
+  if (auditToggle) auditToggle.addEventListener("click", () => { state.showAudit = !state.showAudit; render(); });
+  const backToRatings = document.getElementById("back-to-ratings-btn");
+  if (backToRatings) backToRatings.addEventListener("click", () => { state.step = 4; render(); });
+}
+
+// ── Actions ────────────────────────────────────────────────────────────────────
+function saveEdit() {
+  const v = parseFloat(state.editingVal);
+  if (!isNaN(v)) state.editedRatios[state.editingKey] = v;
+  state.editingKey = null;
+  render();
+}
+
+function reset() {
+  state = {
+    step: 1, company: "", loading: false, loadingMsg: "", error: null,
+    aiResult: null, editedRatios: {}, editingKey: null, editingVal: "",
+    internal: { management_quality: 0, payment_history: 0, collateral_quality: 0, credit_score_rating: 0 },
+    scores: null, finalRatios: {}, showAudit: false,
+  };
+  render();
+}
+
+function runModel() {
+  const missing = INTERNAL_FIELDS.filter(f => !state.internal[f.key]);
+  if (missing.length) {
+    alert("Please rate all four dimensions.\nMissing: " + missing.map(f => f.label).join(", "));
+    return;
+  }
+  const ratios = {};
+  RATIO_FIELDS.forEach(f => {
+    const v = state.editedRatios[f.key];
+    ratios[f.key] = (v != null && !isNaN(v)) ? v : DEFAULTS[f.key];
+  });
+  state.finalRatios = ratios;
+  state.scores = computeScores(ratios, state.internal);
+  state.step = 5;
+  render();
+}
+
+async function startAssessment() {
+  if (!state.company.trim()) return;
+  state.error = null;
+  state.loading = true;
+  state.step = 2;
+
+  const msgs = [
+    "Searching ASIC and company registers…",
+    "Retrieving annual reports and filings…",
+    "Scanning financial press and analyst reports…",
+    "Extracting and normalising ratios…",
+    "Assessing confidence levels…",
+  ];
+  let i = 0;
+  state.loadingMsg = msgs[0];
+  render();
+
+  const interval = setInterval(() => {
+    i = (i + 1) % msgs.length;
+    state.loadingMsg = msgs[i];
+    const p = document.querySelector(".progress-bar-outer p, #content p");
+    const lm = document.querySelector("#content p");
+    // update just the loading message text if possible
+    const msgEl = document.querySelector("#content .card p");
+    if (msgEl) msgEl.textContent = state.loadingMsg;
+  }, 1400);
+
+  try {
+    const result = await fetchRatiosFromClaude(state.company.trim());
+    clearInterval(interval);
+    state.aiResult = result;
+    const init = {};
+    RATIO_FIELDS.forEach(f => { init[f.key] = result.ratios?.[f.key]?.value ?? null; });
+    state.editedRatios = init;
+    state.loading = false;
+    state.step = 3;
+    render();
+  } catch (err) {
+    clearInterval(interval);
+    state.loading = false;
+    state.error = err.message;
+    state.step = 1;
+    render();
+  }
+}
+
+// ── Boot ───────────────────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
