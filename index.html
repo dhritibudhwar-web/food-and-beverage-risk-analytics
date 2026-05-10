@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food &amp; Beverage Filing Snapshot</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6efe4;
+        --ink: #1b1815;
+        --muted: #6e655b;
+        --line: rgba(62, 40, 17, 0.14);
+        --panel: rgba(255, 249, 242, 0.82);
+        --panel-strong: rgba(255, 252, 248, 0.94);
+        --accent: #9f4c20;
+        --accent-soft: rgba(159, 76, 32, 0.12);
+        --good: #1f7a4d;
+        --warn: #b26a18;
+        --bad: #b13c2d;
+        --shadow: 0 24px 60px rgba(91, 58, 24, 0.16);
+        --radius-xl: 28px;
+        --radius-lg: 20px;
+        --radius-md: 14px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Aptos, "Trebuchet MS", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(235, 175, 112, 0.42), transparent 28%),
+          radial-gradient(circle at top right, rgba(182, 98, 46, 0.18), transparent 24%),
+          linear-gradient(180deg, #fff9f1 0%, #f5eada 48%, #f1e3d2 100%);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+        background-size: 32px 32px;
+        mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 75%);
+        opacity: 0.42;
+      }
+
+      .app-shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 28px 0 40px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 28px;
+        border: 1px solid rgba(91, 58, 24, 0.08);
+        border-radius: var(--radius-xl);
+        background:
+          radial-gradient(circle at 80% 20%, rgba(255, 223, 190, 0.88), transparent 24%),
+          linear-gradient(135deg, rgba(255, 251, 246, 0.9), rgba(251, 239, 221, 0.8));
+        box-shadow: var(--shadow);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        right: -36px;
+        top: -44px;
+        width: 220px;
+        height: 220px;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(185, 95, 41, 0.22), transparent 70%);
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        font-size: 0.82rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 800;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 680px;
+        font-size: clamp(2.2rem, 4vw, 4.4rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+      }
+
+      .lede {
+        margin: 16px 0 0;
+        max-width: 720px;
+        font-size: 1.03rem;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .hero-stat,
+      .panel,
+      .metric-card,
+      .signal,
+      .fact-row {
+        backdrop-filter: blur(18px);
+      }
+
+      .hero-stat {
+        padding: 16px 18px;
+        border-radius: var(--radius-lg);
+        background: rgba(255, 251, 246, 0.72);
+        border: 1px solid rgba(115, 72, 30, 0.09);
+      }
+
+      .hero-stat strong,
+      .metric-value {
+        display: block;
+        font-size: 1.45rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .hero-stat span,
+      .hero-stat small,
+      .metric-label,
+      .metric-note,
+      .muted {
+        color: var(--muted);
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 320px minmax(0, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .panel {
+        padding: 22px;
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: 0 20px 45px rgba(91, 58, 24, 0.08);
+      }
+
+      .panel h2 {
+        margin: 0 0 8px;
+        font-size: 1.05rem;
+        letter-spacing: -0.03em;
+      }
+
+      .panel p {
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .field {
+        margin-top: 16px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 800;
+      }
+
+      input,
+      select {
+        width: 100%;
+        border: 1px solid rgba(115, 72, 30, 0.12);
+        border-radius: var(--radius-md);
+        background: var(--panel-strong);
+        color: var(--ink);
+        padding: 14px 15px;
+        font: inherit;
+        outline: none;
+        transition:
+          border-color 160ms ease,
+          transform 160ms ease,
+          box-shadow 160ms ease;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: rgba(159, 76, 32, 0.42);
+        box-shadow: 0 0 0 5px rgba(159, 76, 32, 0.09);
+        transform: translateY(-1px);
+      }
+
+      .hint {
+        margin-top: 12px;
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+
+      .dashboard {
+        display: grid;
+        gap: 20px;
+      }
+
+      .dashboard.hidden {
+        display: none;
+      }
+
+      .overview {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 16px;
+        align-items: start;
+        padding: 26px;
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 11px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.74);
+        border: 1px solid rgba(115, 72, 30, 0.1);
+        font-size: 0.85rem;
+        color: #5b4d3e;
+      }
+
+      .company-code {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 92px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: rgba(159, 76, 32, 0.08);
+        border: 1px solid rgba(159, 76, 32, 0.14);
+      }
+
+      .overview h2 {
+        margin: 0;
+        font-size: clamp(1.55rem, 2.5vw, 2.3rem);
+        letter-spacing: -0.04em;
+      }
+
+      .overview p {
+        margin-top: 10px;
+        color: var(--muted);
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .metric-card {
+        padding: 18px;
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(115, 72, 30, 0.08);
+        background: rgba(255, 252, 247, 0.84);
+      }
+
+      .metric-label {
+        display: block;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+
+      .metric-value {
+        margin-top: 12px;
+      }
+
+      .metric-note {
+        margin-top: 6px;
+        font-size: 0.92rem;
+      }
+
+      .metric-good {
+        border-color: rgba(31, 122, 77, 0.18);
+        background: rgba(238, 252, 245, 0.92);
+      }
+
+      .metric-good .metric-value {
+        color: var(--good);
+      }
+
+      .metric-warn {
+        border-color: rgba(178, 106, 24, 0.2);
+        background: rgba(255, 247, 234, 0.92);
+      }
+
+      .metric-warn .metric-value {
+        color: var(--warn);
+      }
+
+      .metric-bad {
+        border-color: rgba(177, 60, 45, 0.22);
+        background: rgba(255, 242, 240, 0.92);
+      }
+
+      .metric-bad .metric-value {
+        color: var(--bad);
+      }
+
+      .metric-neutral .metric-value {
+        color: #44382d;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 20px;
+      }
+
+      .signal-stack,
+      .facts {
+        display: grid;
+        gap: 12px;
+      }
+
+      .signal {
+        padding: 16px 18px;
+        border-radius: 18px;
+        border: 1px solid rgba(115, 72, 30, 0.08);
+        background: rgba(255, 252, 247, 0.88);
+      }
+
+      .signal strong {
+        display: block;
+        font-size: 0.94rem;
+      }
+
+      .signal p {
+        margin-top: 6px;
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+
+      .signal-good {
+        background: rgba(239, 252, 244, 0.96);
+        border-color: rgba(31, 122, 77, 0.2);
+      }
+
+      .signal-good strong {
+        color: var(--good);
+      }
+
+      .signal-warn {
+        background: rgba(255, 247, 234, 0.96);
+        border-color: rgba(178, 106, 24, 0.2);
+      }
+
+      .signal-warn strong {
+        color: var(--warn);
+      }
+
+      .signal-bad {
+        background: rgba(255, 242, 240, 0.96);
+        border-color: rgba(177, 60, 45, 0.22);
+      }
+
+      .signal-bad strong {
+        color: var(--bad);
+      }
+
+      .fact-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(115, 72, 30, 0.08);
+        background: rgba(255, 253, 250, 0.88);
+      }
+
+      .fact-row span:first-child {
+        color: var(--muted);
+      }
+
+      .fact-row strong {
+        text-align: right;
+        font-size: 0.95rem;
+      }
+
+      .empty-state {
+        padding: 40px 22px;
+        text-align: center;
+        color: var(--muted);
+        border: 1px dashed rgba(115, 72, 30, 0.18);
+        border-radius: var(--radius-xl);
+        background: rgba(255, 251, 246, 0.5);
+      }
+
+      .footer-note {
+        margin-top: 18px;
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+
+      @media (max-width: 980px) {
+        .layout,
+        .split,
+        .metrics,
+        .hero-stats,
+        .overview {
+          grid-template-columns: 1fr;
+        }
+
+        .overview {
+          padding: 22px;
+        }
+
+        .company-code {
+          justify-self: start;
+        }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .hero,
+        .panel,
+        .metric-card,
+        .signal {
+          animation: rise 520ms ease both;
+        }
+
+        .metric-card:nth-child(2) {
+          animation-delay: 60ms;
+        }
+
+        .metric-card:nth-child(3) {
+          animation-delay: 120ms;
+        }
+
+        .metric-card:nth-child(4) {
+          animation-delay: 180ms;
+        }
+
+        @keyframes rise {
+          from {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <p class="eyebrow">Offline 2026 Q1 Filing Set</p>
+        <h1>Food &amp; Beverage Risk Snapshot</h1>
+        <p class="lede">
+          Single-file SEC viewer built from the local <code>2026q1</code>
+          financial statement dataset. No backend, no internet, and one latest
+          10-K or 10-Q filing per food-and-beverage issuer in the embedded set.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <small>Coverage</small>
+            <strong id="companyCount">67</strong>
+            <span>F&amp;B companies embedded</span>
+          </div>
+          <div class="hero-stat">
+            <small>Source</small>
+            <strong>SEC 2026 Q1</strong>
+            <span>Latest filing snapshot per company</span>
+          </div>
+          <div class="hero-stat">
+            <small>Runtime</small>
+            <strong>HTML Only</strong>
+            <span>Inline CSS, JS, and data</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout">
+        <aside class="panel">
+          <h2>Choose a Company</h2>
+          <p class="muted">
+            Filter by company name or CIK. The list is limited to SIC 2000-2099
+            food-and-beverage issuers found in the embedded filing set.
+          </p>
+
+          <div class="field">
+            <label for="searchInput">Search</label>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Try Campbell, Brown, Coca-Cola..."
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="field">
+            <label for="companyPicker">Company</label>
+            <select id="companyPicker" size="14"></select>
+          </div>
+
+          <p id="selectionHint" class="hint">
+            Pick a company to render its latest filing snapshot.
+          </p>
+        </aside>
+
+        <section id="dashboard" class="dashboard hidden">
+          <article class="panel overview">
+            <div>
+              <p class="eyebrow" id="overviewEyebrow">Food &amp; Beverage Filing</p>
+              <h2 id="companyName">Company</h2>
+              <p id="companySubline"></p>
+              <div class="badge-row" id="badges"></div>
+            </div>
+            <div class="company-code" id="companyCode">F&amp;B issuer</div>
+          </article>
+
+          <section class="metrics" id="metrics"></section>
+
+          <section class="split">
+            <article class="panel">
+              <h2>Audit Signals</h2>
+              <div class="signal-stack" id="signals"></div>
+            </article>
+
+            <article class="panel">
+              <h2>Statement Facts</h2>
+              <div class="facts" id="facts"></div>
+              <p id="footnote" class="footer-note"></p>
+            </article>
+          </section>
+        </section>
+
+        <section id="emptyState" class="empty-state">
+          Choose a company to see balance-sheet strength, leverage, profitability,
+          and the raw facts pulled from the local SEC quarter dataset.
+        </section>
+      </section>
+    </main>
+    <script>
+      let PAYLOAD = null;
+      let COMPANIES = [];
+      const numberFormat = new Intl.NumberFormat("en-US");
+      const currencyFormat = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 1,
+      });
+      const percentFormat = new Intl.NumberFormat("en-US", {
+        style: "percent",
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      });
+
+      const sicLabels = {
+        "2000": "Packaged Foods",
+        "2011": "Meat Processing",
+        "2013": "Sausages & Prepared Meat",
+        "2015": "Poultry Processing",
+        "2020": "Dairy Products",
+        "2030": "Preserved Foods",
+        "2033": "Canned Fruits & Vegetables",
+        "2040": "Grain & Animal Feed",
+        "2052": "Cookies & Crackers",
+        "2060": "Sugar & Confectionery",
+        "2070": "Oils & Agricultural Processing",
+        "2080": "Beverages",
+        "2082": "Malt Beverages",
+        "2086": "Soft Drinks",
+        "2090": "Miscellaneous Food Products",
+      };
+
+      const elements = {
+        companyCount: document.getElementById("companyCount"),
+        searchInput: document.getElementById("searchInput"),
+        companyPicker: document.getElementById("companyPicker"),
+        selectionHint: document.getElementById("selectionHint"),
+        dashboard: document.getElementById("dashboard"),
+        emptyState: document.getElementById("emptyState"),
+        companyName: document.getElementById("companyName"),
+        companySubline: document.getElementById("companySubline"),
+        companyCode: document.getElementById("companyCode"),
+        badges: document.getElementById("badges"),
+        metrics: document.getElementById("metrics"),
+        signals: document.getElementById("signals"),
+        facts: document.getElementById("facts"),
+        footnote: document.getElementById("footnote"),
+      };
+
+      async function loadPayload() {
+        const response = await fetch("./food-beverage-dataset.json", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`Could not load food-beverage-dataset.json (${response.status})`);
+        }
+
+        PAYLOAD = await response.json();
+        COMPANIES = Array.isArray(PAYLOAD.companies) ? PAYLOAD.companies : [];
+        elements.companyCount.textContent = numberFormat.format(
+          PAYLOAD.companyCount || COMPANIES.length,
+        );
+      }
+
+      function formatDate(value) {
+        if (!value || value.length !== 8) {
+          return "n/a";
+        }
+
+        const year = Number(value.slice(0, 4));
+        const month = Number(value.slice(4, 6)) - 1;
+        const day = Number(value.slice(6, 8));
+        return new Date(year, month, day).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        });
+      }
+
+      function formatCurrency(value) {
+        if (value === null || value === undefined) {
+          return "n/a";
+        }
+
+        const abs = Math.abs(value);
+        if (abs >= 1_000_000_000) {
+          return `${currencyFormat.format(value / 1_000_000_000)}B`;
+        }
+        if (abs >= 1_000_000) {
+          return `${currencyFormat.format(value / 1_000_000)}M`;
+        }
+        if (abs >= 1_000) {
+          return `${currencyFormat.format(value / 1_000)}K`;
+        }
+        return currencyFormat.format(value);
+      }
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, (character) => {
+          const map = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          };
+          return map[character];
+        });
+      }
+
+      function renderOptions(filterText = "") {
+        const activeValue = elements.companyPicker.value;
+        const normalized = filterText.trim().toLowerCase();
+
+        const filtered = COMPANIES.filter((company) => {
+          if (!normalized) {
+            return true;
+          }
+
+          const haystack = [
+            company.name,
+            company.cik,
+            sicLabels[company.sic] || "",
+          ]
+            .join(" ")
+            .toLowerCase();
+
+          return haystack.includes(normalized);
+        });
+
+        elements.companyPicker.innerHTML = filtered
+          .map(
+            (company, index) =>
+              `<option value="${escapeHtml(company.cik)}" ${index === 0 && !activeValue ? "selected" : ""}>${escapeHtml(company.name)}</option>`,
+          )
+          .join("");
+
+        if (!filtered.length) {
+          elements.companyPicker.innerHTML =
+            '<option value="">No matches in the embedded dataset</option>';
+          renderEmpty("No company matches that filter.");
+          return;
+        }
+
+        if (filtered.some((company) => company.cik === activeValue)) {
+          elements.companyPicker.value = activeValue;
+        }
+
+        renderCompany(elements.companyPicker.value || filtered[0].cik);
+      }
+
+      function makeMetric(title, value, note, tone = "neutral") {
+        return `
+          <article class="metric-card metric-${tone}">
+            <span class="metric-label">${escapeHtml(title)}</span>
+            <strong class="metric-value">${escapeHtml(value)}</strong>
+            <p class="metric-note">${escapeHtml(note)}</p>
+          </article>
+        `;
+      }
+
+      function signal(tone, title, body) {
+        return `
+          <article class="signal signal-${tone}">
+            <strong>${escapeHtml(title)}</strong>
+            <p>${escapeHtml(body)}</p>
+          </article>
+        `;
+      }
+
+      function renderEmpty(message) {
+        elements.dashboard.classList.add("hidden");
+        elements.emptyState.hidden = false;
+        elements.emptyState.textContent = message;
+      }
+
+      function evaluateSignals(company) {
+        const { currentRatio, debtToEquity, profitMargin } = company.metrics;
+        const { equity, revenue, netIncome } = company.facts;
+        const signals = [];
+
+        if (currentRatio !== null) {
+          if (currentRatio < 1) {
+            signals.push(
+              signal(
+                "bad",
+                "Liquidity pressure",
+                `Current ratio is ${currentRatio.toFixed(2)}, which means short-term obligations are larger than current assets.`,
+              ),
+            );
+          } else if (currentRatio < 1.25) {
+            signals.push(
+              signal(
+                "warn",
+                "Thin working-capital cushion",
+                `Current ratio is ${currentRatio.toFixed(2)}. The company can cover current liabilities, but without much slack.`,
+              ),
+            );
+          }
+        }
+
+        if (equity !== null && equity <= 0) {
+          signals.push(
+            signal(
+              "bad",
+              "Negative equity",
+              "Book equity is zero or negative in the selected filing, which makes leverage risk harder to absorb.",
+            ),
+          );
+        } else if (debtToEquity !== null) {
+          if (debtToEquity > 3) {
+            signals.push(
+              signal(
+                "bad",
+                "Heavy leverage",
+                `Debt-to-equity is ${debtToEquity.toFixed(2)}, which is elevated for a simple offline screen.`,
+              ),
+            );
+          } else if (debtToEquity > 1.5) {
+            signals.push(
+              signal(
+                "warn",
+                "Leverage worth monitoring",
+                `Debt-to-equity is ${debtToEquity.toFixed(2)}. The capital structure is workable, but not especially light.`,
+              ),
+            );
+          }
+        }
+
+        if (profitMargin !== null) {
+          if (profitMargin < 0) {
+            signals.push(
+              signal(
+                "bad",
+                "Loss-making period",
+                `Net margin is ${percentFormat.format(profitMargin)} for the available revenue window.`,
+              ),
+            );
+          } else if (profitMargin < 0.05) {
+            signals.push(
+              signal(
+                "warn",
+                "Thin profitability",
+                `Net margin is ${percentFormat.format(profitMargin)}, so there is not much earnings cushion.`,
+              ),
+            );
+          }
+        } else if (revenue === null || netIncome === null) {
+          signals.push(
+            signal(
+              "warn",
+              "Incomplete profit view",
+              "Revenue or net income was not available in the selected filing facts, so margin could not be computed.",
+            ),
+          );
+        }
+
+        if (company.form === "10-Q") {
+          signals.push(
+            signal(
+              "warn",
+              "Quarterly filing context",
+              `This is a ${company.form} with ${company.coverageQuarters || "partial"} quarter coverage for income-statement values, so it is not always a full-year view.`,
+            ),
+          );
+        }
+
+        if (!signals.length) {
+          signals.push(
+            signal(
+              "good",
+              "No obvious pressure signal",
+              "Liquidity, leverage, and profitability all look reasonable under the simple checks used on this page.",
+            ),
+          );
+        }
+
+        return signals.join("");
+      }
+
+      function renderCompany(cik) {
+        const company = COMPANIES.find((entry) => entry.cik === cik);
+
+        if (!company) {
+          renderEmpty("Choose a company to see its offline filing snapshot.");
+          return;
+        }
+
+        const { currentRatio, debtToEquity, profitMargin } = company.metrics;
+        const currentRatioTone =
+          currentRatio === null ? "neutral" : currentRatio < 1 ? "bad" : currentRatio < 1.25 ? "warn" : "good";
+
+        const leverageTone =
+          company.facts.equity !== null && company.facts.equity <= 0
+            ? "bad"
+            : debtToEquity === null
+              ? "neutral"
+              : debtToEquity > 3
+                ? "bad"
+                : debtToEquity > 1.5
+                  ? "warn"
+                  : "good";
+
+        const marginTone =
+          profitMargin === null ? "neutral" : profitMargin < 0 ? "bad" : profitMargin < 0.05 ? "warn" : "good";
+
+        elements.emptyState.hidden = true;
+        elements.dashboard.classList.remove("hidden");
+        elements.companyName.textContent = company.name;
+        elements.companySubline.textContent = `${sicLabels[company.sic] || "Food & Beverage"} · CIK ${company.cik} · Filed ${formatDate(company.filed)} · Period ended ${formatDate(company.period)}`;
+        elements.companyCode.textContent = "F&B issuer";
+        elements.badges.innerHTML = [
+          `Form ${company.form}`,
+          `SIC ${company.sic}`,
+          `FY ${company.fiscalYear} ${company.fiscalPeriod}`,
+          `${company.coverageQuarters || "n/a"} quarter income coverage`,
+        ]
+          .map((label) => `<span class="badge">${escapeHtml(label)}</span>`)
+          .join("");
+
+        elements.metrics.innerHTML = [
+          makeMetric(
+            "Current Ratio",
+            currentRatio === null ? "n/a" : currentRatio.toFixed(2),
+            currentRatio === null
+              ? "Current assets or current liabilities were missing."
+              : currentRatio < 1
+                ? "Below 1.0, so liquidity is tight."
+                : currentRatio < 1.25
+                  ? "Covers short-term obligations with a slim buffer."
+                  : "Comfortable short-term asset coverage.",
+            currentRatioTone,
+          ),
+          makeMetric(
+            "Debt / Equity",
+            company.facts.equity !== null && company.facts.equity <= 0
+              ? "Neg. equity"
+              : debtToEquity === null
+                ? "n/a"
+                : debtToEquity.toFixed(2),
+            company.facts.equity !== null && company.facts.equity <= 0
+              ? "Equity is zero or negative in the filing."
+              : debtToEquity === null
+                ? "Total liabilities or equity were missing."
+                : debtToEquity > 3
+                  ? "Heavily levered balance sheet."
+                  : debtToEquity > 1.5
+                    ? "Leverage is elevated but not extreme."
+                    : "Leverage looks contained.",
+            leverageTone,
+          ),
+          makeMetric(
+            "Profit Margin",
+            profitMargin === null ? "n/a" : percentFormat.format(profitMargin),
+            profitMargin === null
+              ? "Revenue or net income was unavailable."
+              : profitMargin < 0
+                ? "The filing shows a net loss over the available revenue window."
+                : profitMargin < 0.05
+                  ? "Positive, but with a thin earnings cushion."
+                  : "Solid earnings relative to revenue.",
+            marginTone,
+          ),
+          makeMetric(
+            "Revenue Window",
+            company.coverageQuarters ? `${company.coverageQuarters}Q` : "n/a",
+            company.facts.revenue === null
+              ? "Revenue fact was not found in the embedded filing."
+              : `${formatCurrency(company.facts.revenue)} revenue and ${formatCurrency(company.facts.netIncome)} net income for the selected coverage window.`,
+            "neutral",
+          ),
+        ].join("");
+
+        elements.signals.innerHTML = evaluateSignals(company);
+        elements.facts.innerHTML = [
+          ["Current assets", company.facts.currentAssets],
+          ["Current liabilities", company.facts.currentLiabilities],
+          ["Total liabilities", company.facts.totalLiabilities],
+          ["Equity", company.facts.equity],
+          ["Revenue", company.facts.revenue],
+          ["Net income", company.facts.netIncome],
+        ]
+          .map(
+            ([label, value]) => `
+              <div class="fact-row">
+                <span>${escapeHtml(label)}</span>
+                <strong>${escapeHtml(formatCurrency(value))}</strong>
+              </div>
+            `,
+          )
+          .join("");
+
+        elements.footnote.textContent =
+          `Source: local SEC Financial Statement Data Sets (${PAYLOAD.source}). This page uses the latest 10-K or 10-Q found for each F&B issuer in the local quarter dataset, with simple no-internet ratio checks.`;
+        elements.selectionHint.textContent = `Showing ${company.name}.`;
+      }
+
+      elements.searchInput.addEventListener("input", (event) => {
+        renderOptions(event.target.value);
+      });
+
+      elements.companyPicker.addEventListener("change", (event) => {
+        renderCompany(event.target.value);
+      });
+
+      loadPayload()
+        .then(() => {
+          renderOptions();
+        })
+        .catch((error) => {
+          console.error(error);
+          elements.companyCount.textContent = "0";
+          elements.companyPicker.innerHTML =
+            '<option value="">food-beverage-dataset.json not found</option>';
+          elements.selectionHint.textContent =
+            "Keep index.html and food-beverage-dataset.json in the same folder.";
+          renderEmpty("Could not load the local food-and-beverage dataset.");
+        });
+    </script>
+  </body>
+</html>
+
+
+
